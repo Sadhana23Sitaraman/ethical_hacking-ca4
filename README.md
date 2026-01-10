@@ -13,7 +13,7 @@ and rendered without sanitization to demonstrate how Stored XSS attacks work.
 - **Database:** SQLite (Local database)
 - **Security Vulnerability:** Stored Cross‑Site Scripting (XSS)
 
-## ⚙️ Setup Instructions
+##  Setup Instructions
 ### Prerequisites
 Ensure the following are installed:
 - Node.js
@@ -26,19 +26,17 @@ Ensure the following are installed:
 3. Select the project folder:
 hitech-xss-fullstack
 
-
-
-
 ### Step 2: Install Dependencies
 Open the VS Code terminal and run:
-```bash
 npm install
 
- Execution Steps
+-Execution Steps
+
 Step 3: Start the Server
 npm start
 You should see:
 Running at http://localhost:3000
+
 Step 4: Open Application
 Open your browser and visit:
 http://localhost:3000
@@ -46,13 +44,11 @@ http://localhost:3000
 -- Demonstrating Stored XSS Attack
 Click Open Dashboard
 In the Submit Feedback field, enter the payload below:
-html
-Copy code
 <img src=x onerror="alert('XSS Attack')">
 Click Submit
 An alert box appears
 Refresh the page — the alert appears again
-✅ This confirms Stored XSS vulnerability
+This confirms Stored XSS vulnerability
 
 --Vulnerability Explanation
 User input is stored in the database without sanitization
@@ -77,3 +73,4 @@ Simple example:
 An attacker posts <script>alert('XSS')</script> in a comment field.
 Every user who views that comment triggers the script.
 Stored XSS is more dangerous than reflected XSS because it is persistent and spreads to all visitors.
+
