@@ -74,3 +74,4 @@ An attacker posts <script>alert('XSS')</script> in a comment field.
 Every user who views that comment triggers the script.
 Stored XSS is more dangerous than reflected XSS because it is persistent and spreads to all visitors.
 
+
