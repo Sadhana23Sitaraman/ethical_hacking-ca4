@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SecureX Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">SecureX Dashboard</div>
+  </nav>
+
+  <section class="dashboard">
+    <div class="panel">
+      <h2>Submit Feedback</h2>
+
+      <form action="/submit" method="POST">
+        <input type="text" name="message" placeholder="Enter feedback..." required>
+        <button type="submit">Submit</button>
+      </form>
+
+      
+    </div>
+
+    <div class="panel">
+      <h2>Stored Feedback</h2>
+      <div id="output" class="output-box"></div>
+    </div>
+  </section>
+
+  <script>
+    fetch("/data")
+      .then(res => res.text())
+      .then(data => document.getElementById("output").innerHTML = data);
+  </script>
+
+</body>
+</html>
