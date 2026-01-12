@@ -9,6 +9,7 @@ app.use(express.static("public"));
 
 const db = new sqlite3.Database("./database.db");
 
+// Create table
 db.run(`
   CREATE TABLE IF NOT EXISTS feedback (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -16,7 +17,7 @@ db.run(`
   )
 `);
 
-// ❌ STORED XSS (no sanitization)
+// ❌ STORED XSS (intentional)
 app.post("/submit", (req, res) => {
   const msg = req.body.message;
 
@@ -27,12 +28,34 @@ app.post("/submit", (req, res) => {
   );
 });
 
+// ❌ STORED XSS execution point
 app.get("/data", (req, res) => {
   db.all("SELECT * FROM feedback", (err, rows) => {
     let output = "";
     rows.forEach(r => {
-      output += `<div class="comment">${r.message}</div>`; // XSS here
+      output += `<div class="comment">${r.message}</div>`;
     });
+    res.send(output);
+  });
+});
+
+// ❌ SQL INJECTION (intentional)
+app.get("/search", (req, res) => {
+  const q = req.query.q;
+
+  // UNSAFE string concatenation → SQLi
+  const query = `SELECT * FROM feedback WHERE message LIKE '%${q}%'`;
+
+  db.all(query, (err, rows) => {
+    if (err) {
+      return res.send("SQL Error: " + err.message);
+    }
+
+    let output = "<h2>Search Results</h2>";
+    rows.forEach(r => {
+      output += `<div class="comment">${r.message}</div>`;
+    });
+
     res.send(output);
   });
 });
