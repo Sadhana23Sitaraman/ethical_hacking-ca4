@@ -1,4 +1,5 @@
  Project Overview
+
 SecureX is a hi-tech full-stack web application developed to demonstrate **Stored Cross-Site Scripting (XSS)** and **SQL Injection (SQLi)**, which are part of the OWASP Top 10 Web Application Security Risks.
 The application allows users to submit feedback, which is intentionally stored and rendered without sanitization to demonstrate how Stored XSS attacks work.
 It also includes an intentionally vulnerable search feature to demonstrate SQL Injection attacks.
@@ -137,6 +138,7 @@ This demonstrates **SQL Injection (OWASP Top 10)**.
 
 This project is **intentionally vulnerable** and is developed strictly for **educational and ethical security testing purposes only**.
 It must **not** be deployed in a production environment.
+
 
 
 
